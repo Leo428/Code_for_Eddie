@@ -24,14 +24,16 @@ float  pid_Kd = 0.0;
 static bool pidRunning = true;
 static float pidRequestedValue = 0.0;
 
-void clearAllEnc(){
+void clearAllEnc()
+{
 	resetMotorEncoder(motor[fLCtrl]);
 	resetMotorEncoder(motor[bLCtrl]);
 	resetMotorEncoder(motor[fRCtrl]);
 	resetMotorEncoder(motor[bRCtrl]);
 }
 
-task pidController() {
+task pidController()
+{
 	float  pidSensorCurrentValue;
 	float  pidError;
 	float  pidLastError;
@@ -46,17 +48,21 @@ task pidController() {
   pidIntegral = 0;
 
   //looping >_<
-  while(true) {
-  	if(pidRunning) {
+  while(true)
+  {
+  	if(pidRunning)
+  	{
   		pidSensorCurrentValue = SensorValue[I2C_1];
 
   		pidError = pidSensorCurrentValue - pidRequestedValue;
 
-  		if(pid_Ki != 0) {
+  		if(pid_Ki != 0)
+  		{
   			// shall we have a limit???
   			pidIntegral = pidIntegral + pidError;
   		}
-  		else {
+  		else
+  		{
   			pidIntegral = 0;
   		}
 
@@ -73,7 +79,8 @@ task pidController() {
 
       motor[fRCtrl] = pidDrive;
   	}
-  	else {
+  	else
+  	{
   		pidError      = 0;
       pidLastError  = 0;
       pidIntegral   = 0;
@@ -88,7 +95,8 @@ task main()
 {
 
 
-	while(true) {
+	while(true)
+	{
 
 	}
 
