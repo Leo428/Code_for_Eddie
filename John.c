@@ -45,7 +45,7 @@ task pidController()
 	clearAllEnc();
 	//init
 	pidLastError = 0;
-  pidIntegral = 0;
+  	pidIntegral = 0;
 
   //looping >_<
   while(true)
@@ -74,17 +74,17 @@ task pidController()
   		pidDrive = (pid_Kp * pidError) + (pid_Ki * pidIntegral) + (pid_Kd * pidDerivative);
 
   		// limit drive
-      if(pidDrive > PID_DRIVE_MAX ) pidDrive = PID_DRIVE_MAX;
-      else if(pidDrive < PID_DRIVE_MIN ) pidDrive = PID_DRIVE_MIN;
+      		if(pidDrive > PID_DRIVE_MAX ) pidDrive = PID_DRIVE_MAX;
+      		else if(pidDrive < PID_DRIVE_MIN ) pidDrive = PID_DRIVE_MIN;
 
-      motor[fRCtrl] = pidDrive;
-  	}
+      		motor[fRCtrl] = pidDrive;
+	}
   	else
   	{
   		pidError      = 0;
-      pidLastError  = 0;
-      pidIntegral   = 0;
-      pidDerivative = 0;
+      		pidLastError  = 0;
+      		pidIntegral   = 0;
+      		pidDerivative = 0;
   		motor[fRCtrl] = 0;
   	}
   	wait1Msec(25);
